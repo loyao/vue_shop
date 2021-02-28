@@ -4,7 +4,10 @@ import router from './router'
 import './assets/css/index.css'
 import store from './store'
 import './plugins/element.js'
+import axios from 'axios'
 
+
+Vue.prototype.$http = axios 
 Vue.config.productionTip = false
 
 new Vue({
