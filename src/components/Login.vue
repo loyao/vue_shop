@@ -30,8 +30,8 @@
 		data() {
 			return {
 				form: {
-					username: '12',
-					password: '1212',
+					username: 'admin',
+					password: '',
 				},
 				rules: {
 					username: [
