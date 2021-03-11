@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import Welcome from '../components/Welcome.vue'
+import Users from '../components/user/Users.vue'
 import {
 	getToken
 } from '@/utils/auth'
@@ -27,6 +28,10 @@ const router = new VueRouter({
 				{
 					path: "/welcome",
 					component: Welcome
+				},
+				{
+					path: "/user_list",
+					component: Users
 				}
 			]}
 	]

@@ -7,10 +7,10 @@ import store from '@/store'
 import {
 	getToken,setToken
 } from '@/utils/auth'
+import router from "@/router";
 
 // create an axios instance
 const service = axios.create({
-	//baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
 	baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
 	// withCredentials: true, // send cookies when cross-domain requests
 	timeout: 5000 // request timeout
@@ -36,7 +36,7 @@ service.interceptors.request.use(
 	}
 )
 
-// 相应拦截器 response interceptor
+// 响应拦截器 response interceptor
 service.interceptors.response.use(
 	/**
 	 * If you want to get http information such as headers or status
@@ -48,10 +48,11 @@ service.interceptors.response.use(
 	 * Here is just an example
 	 * You can also judge the status by HTTP Status Code
 	 */
-	
+
 	response => {
 		const res = response.data
-       
+
+		console.log(response.status)
 		// if the custom code is not 20000, it is judged as an error.
 		if (res.code !== 200) {
 			Message({
@@ -59,8 +60,6 @@ service.interceptors.response.use(
 				type: 'error',
 				duration: 5 * 1000
 			})
-
-		
 			if (res.code === 401) {
 				// to re-login
 				MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again',
@@ -83,14 +82,12 @@ service.interceptors.response.use(
 		}
 	},
 	 error => {
-		console.log('err' + error) // for debug
-		Message({
-			message: error.message,
-			type: 'error',
-			duration: 5 * 1000
-		})
-		return Promise.reject(error)
-	} 
+		console.log('err' + error.response.status) // for debug
+		if (error.response.status===401){
+			//token过期
+			router.push('/login');
+		}
+	}
 )
 
 export default service

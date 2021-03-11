@@ -13,7 +13,7 @@
         <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                  background-color="#333744"
                  text-color="#fff" active-text-color="#409bff" width="200px" :unique-opened="true"
-                 :collapse="isCollapsed" :collapse-transition="false" :router="true">
+                 :collapse="isCollapsed" :collapse-transition="false" :router="true" :defalut-active="$route.path" >
           <el-submenu :index="item.id + ' '" v-for="item in menuList" :key="item.id">
             <template slot="title">
               <i :class="item.icon"></i>

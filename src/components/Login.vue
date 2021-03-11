@@ -24,7 +24,7 @@
 </template>
 
 <script>
-	import { login } from "../api/user.js"
+	import { login } from "@/api/user"
 	import { Message } from 'element-ui'
 	export default {
 		data() {
